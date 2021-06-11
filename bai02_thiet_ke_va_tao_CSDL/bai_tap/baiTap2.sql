@@ -1,0 +1,27 @@
+CREATE DATABASE bai02_baiTap2_QuanLyBanHang;
+USE bai02_baiTap2_QuanLyBanHang;
+CREATE TABLE Customer (
+    cID 	INT         NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	cName 	VARCHAR(60) NOT NULL,
+	cAge 	INT			CHECK(cAge > 0)
+);
+CREATE TABLE Order1 (
+	oID 		INT 		NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	cID			INT,
+	oDATE 		DATETIME,
+	oTotalPrice DOUBLE,
+	FOREIGN KEY (cID) REFERENCES Customer (cID)
+);
+CREATE TABLE Product (
+    pID 	INT         NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	pName 	VARCHAR(60) NOT NULL,
+	pPrice 	DOUBLE
+);
+CREATE TABLE OrderDetail (
+    oID 	INT,
+    pID 	INT,
+    odQTY 	INT,
+    PRIMARY KEY (oID,pID),
+    FOREIGN KEY (oID) REFERENCES Order1 (oID),
+    FOREIGN KEY (pID) REFERENCES Product (pID)
+);
