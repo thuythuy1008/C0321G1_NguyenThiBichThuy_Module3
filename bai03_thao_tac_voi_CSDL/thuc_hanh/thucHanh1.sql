@@ -1,4 +1,4 @@
-use bai02_thucHanh_QuanLySinhVien;
+use bai03_thucHanh_QuanLySinhVien;
 INSERT INTO Class
 VALUES (1, 'A1', '2008-12-20', 1);
 INSERT INTO Class

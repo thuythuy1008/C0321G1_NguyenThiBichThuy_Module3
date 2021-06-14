@@ -1,27 +1,27 @@
-CREATE DATABASE bai02_baiTap2_QuanLyBanHang;
+create database bai02_baiTap2_QuanLyBanHang;
 USE bai02_baiTap2_QuanLyBanHang;
-CREATE TABLE Customer (
-    cID 	INT         NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	cName 	VARCHAR(60) NOT NULL,
-	cAge 	INT			CHECK(cAge > 0)
+CREATE TABLE customer (
+    customer_id 	INT         NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	customer_name 	VARCHAR(60) NOT NULL,
+	customer_age 	INT			CHECK(customer_age > 0)
 );
-CREATE TABLE Order1 (
-	oID 		INT 		NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	cID			INT,
-	oDATE 		DATETIME,
-	oTotalPrice DOUBLE,
-	FOREIGN KEY (cID) REFERENCES Customer (cID)
+CREATE TABLE order1 (
+	order1_id 			INT 		NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	customer_id			INT,
+	order1_date 		DATETIME,
+	order1_total_price 	DOUBLE,
+	FOREIGN KEY (customer_id) REFERENCES customer (customer_id)
 );
-CREATE TABLE Product (
-    pID 	INT         NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	pName 	VARCHAR(60) NOT NULL,
-	pPrice 	DOUBLE
+CREATE TABLE product (
+    product_id 		INT         NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	product_name 	VARCHAR(60) NOT NULL,
+	product_price 	DOUBLE
 );
-CREATE TABLE OrderDetail (
-    oID 	INT,
-    pID 	INT,
-    odQTY 	INT,
-    PRIMARY KEY (oID,pID),
-    FOREIGN KEY (oID) REFERENCES Order1 (oID),
-    FOREIGN KEY (pID) REFERENCES Product (pID)
+CREATE TABLE order_detail (
+    order1_id 			INT,
+    product_id		 	INT,
+    order_detail_QTY 	INT,
+    PRIMARY KEY (order1_id,product_id),
+    FOREIGN KEY (order1_id) REFERENCES order1 (order1_id),
+    FOREIGN KEY (product_id) REFERENCES product (product_id)
 );
