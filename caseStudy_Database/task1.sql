@@ -82,7 +82,8 @@ id_hop_dong int,foreign key(id_hop_dong) references hop_dong(id_hop_dong),
 id_dich_vu_di_kem int,foreign key(id_dich_vu_di_kem) references dich_vu_di_kem(id_dich_vu_di_kem),
 so_luong int
 );
--- Thêm thông tin cho các bảng
+-- Task 1:
+/*1.	Thêm mới thông tin cho tất cả các bảng có trong CSDL.*/
 insert into vi_tri
 values
 (1,'Le Tan'),
