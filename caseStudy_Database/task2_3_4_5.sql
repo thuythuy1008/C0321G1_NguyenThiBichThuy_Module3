@@ -2,9 +2,17 @@ use caseStudy_Database;
 -- Task 2:
 /*2.	Hiển thị thông tin của tất cả nhân viên có trong hệ thống có tên bắt đầu
  là một trong các ký tự “H”, “T” hoặc “K” và có tối đa 15 ký tự.*/
-select *
+ -- Cách 1:
+select id_nhan_vien,ho_ten,substring(ho_ten, (length(ho_ten)-instr(reverse(ho_ten)," ")+2),instr(reverse(ho_ten)," ")-1) as ten,
+ngay_sinh,dia_chi
 from nhan_vien
-where ((ho_ten like 'H%') or (ho_ten like 'K%') or (ho_ten like 'T%')) and length(ho_ten)<=15;
+where (substring(ho_ten,length(ho_ten)-instr(reverse(ho_ten)," ") + 2,instr(reverse(ho_ten)," ")-1) like "T%" or "H%" or "K%")
+and length(ho_ten)<=15;
+ -- Cách 2:
+select id_nhan_vien,ho_ten,ngay_sinh,dia_chi
+from nhan_vien
+where (substring_index(ho_ten," ", -1) like "H%" or substring_index(ho_ten," ", -1) like "T%"  or substring_index(ho_ten," ", -1) like "K%" ) and (length(ho_ten) <=15);
+
 -- Task 3:
 /*3.	Hiển thị thông tin của tất cả khách hàng có độ tuổi từ 18 đến 50 tuổi và 
 có địa chỉ ở “Đà Nẵng” hoặc “Quảng Trị”.*/
@@ -27,7 +35,7 @@ order by so_luong;
 cho tất cả các Khách hàng đã từng đặt phỏng. (Những Khách hàng nào chưa từng đặt phòng cũng phải hiển thị ra).*/
 select khach_hang.id_khach_hang, khach_hang.ho_ten,loai_khach.ten_loai_khach,hop_dong.id_hop_dong
 ,dich_vu.ten_dich_vu,hop_dong.ngay_lam_hop_dong,hop_dong.ngay_ket_thuc, 
-sum(dich_vu.chi_phi_thue + hop_dong_chi_tiet.so_luong*dich_vu_di_kem.gia) as tong_tien
+sum(dich_vu.chi_phi_thue + hop_dong_chi_tiet.so_luong*dich_vu_di_kem.gia) as 'tong_tien'
 from khach_hang
 left join loai_khach on khach_hang.id_loai_khach=loai_khach.id_loai_khach
 left join hop_dong on khach_hang.id_khach_hang=hop_dong.id_khach_hang

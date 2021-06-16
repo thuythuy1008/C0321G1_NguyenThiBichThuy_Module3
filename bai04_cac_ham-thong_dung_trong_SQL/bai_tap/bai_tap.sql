@@ -11,7 +11,7 @@ join mark m on s.subject_id=m.subject_id
 where mark = (select max(mark) from mark);
 
 -- Hiển thị các thông tin sinh viên và điểm trung bình của mỗi sinh viên, xếp hạng theo thứ tự điểm giảm dần
-select s.student_id,s.student_name,s.address,s.phone,avg(mark) as "Điểm TB"
+select s.student_id,s.student_name,s.address,s.phone,avg(mark) as "medium_score"
 from student s
 left join mark m on s.student_id=m.student_id
 group by s.student_id,s.student_name
