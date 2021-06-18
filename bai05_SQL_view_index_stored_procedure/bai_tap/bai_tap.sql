@@ -45,7 +45,7 @@ where product_code = "B06";
 drop view product_views;
 
 -- Bước 5:
--- Tạo Stored prosedure, lấy tất cả thông tin của sản phẩm
+-- Tạo Stored procedure, lấy tất cả thông tin của sản phẩm
 delimiter //
 create procedure  find_all_products()
 begin
@@ -53,7 +53,7 @@ begin
 end //
 delimiter ;
 call find_all_products();
--- Tạo Stored prosedure thêm 1 sản phẩm 
+-- Tạo Stored procedure thêm 1 sản phẩm 
 delimiter //
 create procedure insert_products(in product_code varchar(45),in product_name varchar(45),in product_price int,in product_amount int,in product_description varchar(45),in product_status varchar(45))
 begin
@@ -64,7 +64,7 @@ delimiter ;
 call insert_products("D03","IPhone X",14000000,2,"màu xám","Mới 100%");
 call insert_products("D07","Sam sung Galaxy",10000000,1,"màu xanh","Mới 100%");
 select * from products;
--- Tạo Stored prosedure sửa thông tin sản phẩm theo id
+-- Tạo Stored procedure sửa thông tin sản phẩm theo id
 delimiter //
 create procedure update_products(in product_id_in int, in product_code_in varchar(45))
 begin

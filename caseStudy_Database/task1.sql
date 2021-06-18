@@ -109,6 +109,9 @@ values
 (1,'Huynh Thi Nga',1,3,1,'1994/08/10','097354920',7000000,'0392065098','ngahuynh@gmail.com','Quang Tri'),
 (2,'Truong Van Quang',5,4,4,'1991/11/15','034586038',12000000,'0394908776','truongquang@gmail.com','Hue'),
 (3,'Nguyen Thi Thanh',2,1,3,'1997/10/25','239876509',8500000,'0987987098','thanhnguyen@gmail.com','Da Nang');
+insert into nhan_vien
+values
+(4,'Vo Thanh Dat',3,2,2,'1993/04/12','097354042',9000000,'0392853968','thanhdat@gmail.com','Hai Chau');
 insert into loai_khach
 values
 (1,'Diamond'),
@@ -120,7 +123,10 @@ insert into khach_hang
 values
 (1,2,'Nguyen Van An','1989/02/19','176086789','0971098789','nguyenan@gmail.com','Da Nang'),
 (2,5,'Tran Nhu ngoc','1975/12/07','297479674','0989098765','tranngoc@gmail.com','Nha Trang'),
-(3,1,'Nguyen Van Nhat','1995/10/04','098057336','0396098779','nhatnguyen@gmail.com','Quang Tri');
+(3,1,'Nguyen Van Nhat','1995/10/04','098057336','0396098779','nhatnguyen@gmail.com','Vinh');
+insert into khach_hang
+values
+(4,3,'Nguyen Thi My','1992/09/03','098028402','0396483027','mynguyen@gmail.com','Quang Tri');
 insert into kieu_thue
 values
 (1,'Ngay',300000),
@@ -135,11 +141,17 @@ values
 (1,'Villa1',40,3,12,10000000,1,1,'Trong'),
 (2,'House1',35,2,8,7000000,3,1,'Trong'),
 (3,'Room1',25,1,4,3000000,2,2,'Trong');
+insert into dich_vu
+values
+(4,'Villa2',35,2,10,9000000,1,2,'Trong');
 insert into hop_dong
 values
 (1,1,2,2,'2018/04/12','2018/05/12',5000000,0),
-(2,3,1,1,'2019/07/22','2019/07/23',3000000,0),
-(3,2,3,3,'2020/10/05','2020/10/11',4000000,0);
+(2,3,1,1,'2019/02/22','2019/02/23',3000000,0),
+(3,2,3,3,'2019/11/05','2019/11/11',4000000,0);
+insert into hop_dong
+values
+(4,4,4,4,'2019/12/12','2019/12/13',6000000,0);
 insert into dich_vu_di_kem
 values
 (1,'Massage',500000,1,'Mo'),
