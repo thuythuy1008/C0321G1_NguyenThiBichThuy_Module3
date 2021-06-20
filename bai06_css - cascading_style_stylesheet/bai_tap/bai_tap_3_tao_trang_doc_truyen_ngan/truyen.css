@@ -1,0 +1,25 @@
+#hienthitruyen{
+    background: darkturquoise;
+    border-style: ridge;
+}
+#truyen{
+    background: lightgoldenrodyellow;
+    border-style: ridge;
+    width: 95%;
+    height: auto;
+    margin: 10px auto;
+}
+#hinh{
+    background-size: 200px;
+    width: 95%;
+    height: 200px;
+    margin: 10px auto;
+}
+h1{
+    text-align: center;
+    color: red;
+}
+li{
+    list-style-position:inside;
+    color: darkred;
+}

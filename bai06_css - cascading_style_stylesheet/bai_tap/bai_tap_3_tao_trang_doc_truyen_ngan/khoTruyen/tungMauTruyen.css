@@ -1,0 +1,26 @@
+#hienthi{
+    background: darkorange;
+    border-style: ridge;
+    width: 100%;
+    margin: auto;
+    display: flex;
+}
+#noidung{
+    background: beige;
+    border-style: ridge;
+    width: 70%;
+    margin: 10px auto;
+}
+#hinhnentruyen{
+    background-size: 470px;
+    width: 30%;
+    margin: 10px auto;
+}
+h1{
+    text-align: center;
+    color: magenta;
+}
+p{
+    text-align: justify;
+    text-indent: 30px;
+}
