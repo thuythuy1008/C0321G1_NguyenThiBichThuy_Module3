@@ -90,12 +90,14 @@ create temporary table bang_tam_id(select dv.id_dich_vu,dv.ten_dich_vu,hd.id_hop
 delimiter //
 create procedure sp_3()
 begin
-delete from dich_vu
-where id_dich_vu = (select bang_tam_id.id_dich_vu from bang_tam_id);
+delete from hop_dong_chi_tiet
+where id_hop_dong_chi_tiet in (select bang_tam_id.id_hop_dong_chi_tiet from bang_tam_id);
 delete from hop_dong
-where id_hop_dong = (select bang_tam_id.id_hop_dong from bang_tam_id);
+where id_hop_dong in (select bang_tam_id.id_hop_dong from bang_tam_id);
+delete from dich_vu
+where id_dich_vu in (select bang_tam_id.id_dich_vu from bang_tam_id);
 end //
 delimiter ; 
-call sp_3; 
+call sp_3(); 
 drop procedure sp_3;
 drop table bang_tam_id;
