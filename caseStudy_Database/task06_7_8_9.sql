@@ -7,8 +7,8 @@ from dich_vu
 join loai_dich_vu on dich_vu.id_loai_dich_vu=loai_dich_vu.id_loai_dich_vu
 join hop_dong on dich_vu.id_dich_vu=hop_dong.id_dich_vu
 where dich_vu.id_dich_vu not in (select hop_dong.id_dich_vu 
-								from hop_dong 
-								where (year(ngay_lam_hop_dong)=2019) and (month(ngay_lam_hop_dong) in (01,02,03)));
+	from hop_dong 
+	where (year(ngay_lam_hop_dong)=2019) and (month(ngay_lam_hop_dong) in (01,02,03)));
 
 -- Task 7:
 /*7.	Hiển thị thông tin IDDichVu, TenDichVu, DienTich, SoNguoiToiDa, ChiPhiThue, TenLoaiDichVu của
@@ -19,8 +19,8 @@ from dich_vu
 join loai_dich_vu on dich_vu.id_loai_dich_vu=loai_dich_vu.id_loai_dich_vu
 join hop_dong on dich_vu.id_dich_vu=hop_dong.id_dich_vu
 where year(ngay_lam_hop_dong)=2018 and year(ngay_lam_hop_dong) not in (select year(ngay_lam_hop_dong)
-								from hop_dong 
-								where (year(ngay_lam_hop_dong)=2019)); 
+	from hop_dong 
+	where (year(ngay_lam_hop_dong)=2019)); 
                                 
 -- Task 8:
 /*8.	Hiển thị thông tin HoTenKhachHang có trong hệ thống, với yêu cầu HoThenKhachHang không trùng nhau.

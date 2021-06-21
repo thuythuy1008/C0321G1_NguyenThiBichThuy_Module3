@@ -27,8 +27,8 @@ having count(hd.id_hop_dong) <=3;
 /*16.	Xóa những Nhân viên chưa từng lập được hợp đồng nào từ năm 2017 đến năm 2019.*/
 delete from nhan_vien nv
 where  nv.id_nhan_vien not in (select hd.id_nhan_vien
-						 from hop_dong hd
-						 where year(hd.ngay_lam_hop_dong) between 2017 and year(curdate()));
+	from hop_dong hd
+	where year(hd.ngay_lam_hop_dong) between 2017 and year(curdate()));
  
  -- Task 17:
  /*17.	Cập nhật thông tin những khách hàng có TenLoaiKhachHang từ  Platinium lên Diamond, 
@@ -56,8 +56,8 @@ drop table bang_tam_id_tong_tien;
 /*18.	Xóa những khách hàng có hợp đồng trước năm 2016 (chú ý ràng buộc giữa các bảng).*/
 delete from khach_hang kh
 where  kh.id_khach_hang in (select hd.id_khach_hang
-						 from hop_dong hd
-						 where year(hd.ngay_lam_hop_dong) < 2016);
+	from hop_dong hd
+	where year(hd.ngay_lam_hop_dong) < 2016);
                          
 -- Task 19:
 /*19.	Cập nhật giá cho các Dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2019 lên gấp đôi.*/

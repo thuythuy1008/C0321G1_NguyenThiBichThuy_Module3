@@ -32,8 +32,8 @@ join khach_hang kh on hd.id_khach_hang = kh.id_khach_hang
 join dich_vu dv on hd.id_dich_vu = dv.id_dich_vu
 join hop_dong_chi_tiet hdct on hd.id_hop_dong = hdct.id_hop_dong 
 where year(hd.ngay_lam_hop_dong)=2019 and month(hd.ngay_lam_hop_dong) in (10,11,12)and month(hd.ngay_lam_hop_dong) not in (select month(hd.ngay_lam_hop_dong)
-								from hop_dong
-								where month(hd.ngay_lam_hop_dong)between 1 and 6); 
+	from hop_dong
+	where month(hd.ngay_lam_hop_dong)between 1 and 6); 
 
 -- Task 13:
 /*13.	Hiển thị thông tin các Dịch vụ đi kèm được sử dụng nhiều nhất bởi các Khách hàng đã đặt phòng.
