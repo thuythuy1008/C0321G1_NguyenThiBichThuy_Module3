@@ -12,6 +12,16 @@
             'footer footer footer footer footer footer';
 }
 
+@media only screen and (max-width: 500px){
+    .container {
+        display: grid;
+        grid-template-areas:
+                'header header header header header header'
+                'content content content content content content'
+                'footer footer footer footer footer footer';
+    }
+}
+
 .item1 {grid-area: header}
 .item2 {grid-area: menuLeft}
 .item3 {grid-area: content}
@@ -23,6 +33,13 @@
     float: left;
     font-size: 20px;
 }
+
+.item1_2 {
+    margin: 10px;
+    float: right;
+    font-size: 20px;
+}
+
 .item1 {
     background-color: black;
     color: white;
