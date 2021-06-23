@@ -8,12 +8,12 @@ section {
     height: 400px;
     background-color: lightgrey;
 }
-#section_1{
+#section-1{
     width: 60%;
     height: 70%;
     float: left;
 }
-#section_2{
+#section-2{
     background-color: beige;
     width: 40%;
     height: 100%;
@@ -32,7 +32,7 @@ li {
     display: inline;
     margin: 5px;
 }
-#h2_1 {
+#aside {
     text-align: center;
 }
 h1 {

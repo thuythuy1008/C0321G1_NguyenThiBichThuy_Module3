@@ -28,13 +28,13 @@
 .item4 {grid-area: menuRight}
 .item5 {grid-area: footer}
 
-.item1_1 {
+.item1-1 {
     margin: 10px;
     float: left;
     font-size: 20px;
 }
 
-.item1_2 {
+.item1-2 {
     margin: 10px;
     float: right;
     font-size: 20px;
@@ -50,7 +50,7 @@
     background-color: lightgrey;
 }
 
-.item2_1 {
+.item2-1 {
     color: blue;
     font-size: 20px;
 }
@@ -64,7 +64,7 @@
     background-color: lightgrey;
 }
 
-.item4_1 {
+.item4-1 {
     text-align: center;
     width: 50px;
     font-size: 20px;

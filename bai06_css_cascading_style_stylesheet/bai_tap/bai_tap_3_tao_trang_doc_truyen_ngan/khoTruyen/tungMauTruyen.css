@@ -1,17 +1,17 @@
-#hienthi{
+#hien-thi{
     background: darkorange;
     border-style: ridge;
     width: 100%;
     margin: auto;
     display: flex;
 }
-#noidung{
+#noi-dung{
     background: beige;
     border-style: ridge;
     width: 70%;
     margin: 10px auto;
 }
-#hinhnentruyen{
+#hinh-nen-truyen{
     background-size: 470px;
     width: 30%;
     margin: 10px auto;
