@@ -26,10 +26,10 @@ public class CustomerServlet extends HttpServlet {
                 createCustomer(request, response);
                 break;
             case "edit":
-                updateCustomer(request, response);
+//                updateCustomer(request, response);
                 break;
             case "delete":
-                deleteCustomer(request, response);
+//                deleteCustomer(request, response);
                 break;
             default:
                 break;
@@ -46,13 +46,13 @@ public class CustomerServlet extends HttpServlet {
                 showCreateForm(request, response);
                 break;
             case "edit":
-                showEditForm(request, response);
+//                showEditForm(request, response);
                 break;
             case "delete":
-                showDeleteForm(request, response);
+//                showDeleteForm(request, response);
                 break;
             case "view":
-                viewCustomer(request, response);
+//                viewCustomer(request, response);
                 break;
             default:
                 listCustomers(request, response);
