@@ -10,13 +10,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserRepositoryImpl implements UserRepository{
+    private static final String INSERT_USERS_SQL = "INSERT INTO users" + "  (name, email, country) VALUES " +
+            " (?, ?, ?);";
+
+    private static final String SELECT_USER_BY_ID = "select id,name,email,country from users where id =?";
+    private static final String SELECT_ALL_USERS = "select * from users";
+    private static final String DELETE_USERS_SQL = "delete from users where id = ?;";
+    private static final String UPDATE_USERS_SQL = "update users set name = ?,email= ?, country =? where id = ?;";
+    private static final String SELECT_USERS_BY_COUNTRY = "select * from users where country = ?;";
+    private static final String SORT_BY_NAME = "select * ,(substring_index(name ,\" \", -1)) as \"first_name\" from users order by first_name";
     @Override
     public void insertUser(User user) throws SQLException {
         Connection connection = DBConnection.getConnection();
         PreparedStatement statement = null;
         if (connection != null) {
             try {
-                statement=connection.prepareStatement("INSERT INTO users" + "  (name, email, country) VALUES " + "(?, ?, ?)");
+                statement=connection.prepareStatement(INSERT_USERS_SQL);
                 statement.setString(1, user.getName());
                 statement.setString(2, user.getEmail());
                 statement.setString(3, user.getCountry());
@@ -42,7 +51,7 @@ public class UserRepositoryImpl implements UserRepository{
         PreparedStatement statement = null;
         ResultSet rs = null;
         try {
-            statement = connection.prepareStatement("select id,name,email,country from users where id =?");
+            statement = connection.prepareStatement(SELECT_USER_BY_ID);
             statement.setInt(1, id);
             System.out.println(statement);
             rs = statement.executeQuery();
@@ -74,7 +83,7 @@ public class UserRepositoryImpl implements UserRepository{
         PreparedStatement statement = null;
         ResultSet rs = null;
         try {
-            statement = connection.prepareStatement("select * from users");
+            statement = connection.prepareStatement(SELECT_ALL_USERS);
             System.out.println(statement);
             rs = statement.executeQuery();
 
@@ -105,7 +114,7 @@ public class UserRepositoryImpl implements UserRepository{
         PreparedStatement statement = null;
         if (connection != null) {
             try {
-                statement = connection.prepareStatement("delete from users where id = ?");
+                statement = connection.prepareStatement(DELETE_USERS_SQL);
                 statement.setInt(1, id);
                 statement.executeUpdate();
             } catch (SQLException throwables) {
@@ -120,7 +129,7 @@ public class UserRepositoryImpl implements UserRepository{
         PreparedStatement statement = null;
         if (connection != null) {
             try {
-                statement = connection.prepareStatement("update users set name = ?,email= ?, country =? where id = ?");
+                statement = connection.prepareStatement(UPDATE_USERS_SQL);
                 statement.setString(1, user.getName());
                 statement.setString(2, user.getEmail());
                 statement.setString(3, user.getCountry());
@@ -141,7 +150,7 @@ public class UserRepositoryImpl implements UserRepository{
 
         if (connection != null) {
             try {
-                statement = connection.prepareStatement("select * from users where country = ?");
+                statement = connection.prepareStatement(SELECT_USERS_BY_COUNTRY);
                 statement.setString(1, stringName);
                 resultSet = statement.executeQuery();
                 User user = null;
@@ -179,7 +188,7 @@ public class UserRepositoryImpl implements UserRepository{
 
         if (connection != null) {
             try {
-                statement = connection.prepareStatement("select * ,(substring_index(name ,\" \", -1)) as \"first_name\" from users order by first_name");
+                statement = connection.prepareStatement(SORT_BY_NAME);
                 resultSet = statement.executeQuery();
                 User user = null;
 
