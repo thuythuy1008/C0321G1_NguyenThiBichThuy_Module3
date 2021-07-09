@@ -21,7 +21,7 @@
             <jsp:include page="/layout/left.jsp"></jsp:include>
         </div>
         <div class="col-10">
-            <table class="table table-striped">
+            <table class="table table-striped" style="overflow-x:scroll; max-width: 100%; display: inline-block">
                 <thead>
                 <tr>
                     <th>Customer Id</th>
@@ -33,7 +33,7 @@
                     <th>Customer Phone</th>
                     <th>Customer Email</th>
                     <th>Customer Address</th>
-                    <th>Customer Type Id</th>
+                    <th>Customer Type</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
@@ -49,7 +49,15 @@
                         <td><c:out value="${customer.getCustomerPhone()}"/></td>
                         <td><c:out value="${customer.getCustomerEmail()}"/></td>
                         <td><c:out value="${customer.getCustomerAddress()}"/></td>
-                        <td><c:out value="${customer.getCustomerTypeId()}"/></td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${customer.getCustomerTypeId()==1}"><p>Diamond</p></c:when>
+                                <c:when test="${customer.getCustomerTypeId()==2}"><p>Platinium</p></c:when>
+                                <c:when test="${customer.getCustomerTypeId()==3}"><p>Gold</p></c:when>
+                                <c:when test="${customer.getCustomerTypeId()==4}"><p>Silver</p></c:when>
+                                <c:when test="${customer.getCustomerTypeId()==5}"><p>Member</p></c:when>
+                            </c:choose>
+                        </td>
                         <td>
                             <a  class="btn btn-primary" href="/customer?action=edit&id=${customer.getCustomerId()}" role="button">Edit</a>
                             <a onclick="onDelete('${customer.getCustomerId()}','${customer.getCustomerCode()}')" class="btn btn-danger"

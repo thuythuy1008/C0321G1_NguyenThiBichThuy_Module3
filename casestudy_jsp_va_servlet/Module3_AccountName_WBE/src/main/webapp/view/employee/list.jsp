@@ -24,7 +24,7 @@
             <center>
                 <h1>Employee Management</h1>
             </center>
-            <table id="tableEmployee" class="table table-striped table-bordered" style="width: 100%">
+            <table id="tableEmployee" class="table table-striped table-bordered" style="overflow-x:scroll; max-width: 100%; display: inline-block">
                 <thead>
                 <tr>
                     <th>Employee Id</th>
@@ -35,31 +35,57 @@
                     <th>Employee Phone</th>
                     <th>Employee Email</th>
                     <th>Employee Address</th>
-                    <th>Position Id</th>
-                    <th>Education Degree Id</th>
-                    <th>Division Id</th>
+                    <th>Position</th>
+                    <th>Education Degree</th>
+                    <th>Division</th>
                     <th>User Name</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="customer" items="${employeeList}">
+                <c:forEach var="employee" items="${employeeList}">
                     <tr>
-                        <td><c:out value="${customer.getEmployeeId()}"/></td>
-                        <td><c:out value="${customer.getEmployeeName()}"/></td>
-                        <td><c:out value="${customer.getEmployeeBirthday()}"/></td>
-                        <td><c:out value="${customer.getEmployeeIdCard()}"/></td>
-                        <td><c:out value="${customer.getEmployeeSalary()}"/></td>
-                        <td><c:out value="${customer.getEmployeePhone()}"/></td>
-                        <td><c:out value="${customer.getEmployeeEmail()}"/></td>
-                        <td><c:out value="${customer.getEmployeeAddress()}"/></td>
-                        <td><c:out value="${customer.getPositionId()}"/></td>
-                        <td><c:out value="${customer.getEducationDegreeId()}"/></td>
-                        <td><c:out value="${customer.getDivisionId()}"/></td>
-                        <td><c:out value="${customer.getUserName()}"/></td>
+                        <td><c:out value="${employee.getEmployeeId()}"/></td>
+                        <td><c:out value="${employee.getEmployeeName()}"/></td>
+                        <td><c:out value="${employee.getEmployeeBirthday()}"/></td>
+                        <td><c:out value="${employee.getEmployeeIdCard()}"/></td>
+                        <td><c:out value="${employee.getEmployeeSalary()}"/></td>
+                        <td><c:out value="${employee.getEmployeePhone()}"/></td>
+                        <td><c:out value="${employee.getEmployeeEmail()}"/></td>
+                        <td><c:out value="${employee.getEmployeeAddress()}"/></td>
                         <td>
-                            <a class="btn btn-primary" href="/employee?action=edit&employeeId=${customer.getEmployeeId()}" role="button">Edit</a>
-                            <a onclick="onDelete('${customer.getEmployeeId()}','${customer.getEmployeeName()}')" class="btn btn-danger"
+                            <c:choose>
+                                <c:when test="${employee.getPositionId()==1}"><p>Lễ tân</p></c:when>
+                                <c:when test="${employee.getPositionId()==2}"><p>Phục vụ</p></c:when>
+                                <c:when test="${employee.getPositionId()==3}"><p>Chuyên viên</p></c:when>
+                                <c:when test="${employee.getPositionId()==4}"><p>Giám sát</p></c:when>
+                                <c:when test="${employee.getPositionId()==5}"><p>Quản lý</p></c:when>
+                                <c:when test="${employee.getPositionId()==6}"><p>Giám đốc</p></c:when>
+                            </c:choose>
+                        </td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${employee.getEducationDegreeId()==1}"><p>Trung cấp</p></c:when>
+                                <c:when test="${employee.getEducationDegreeId()==2}"><p>Cao đẳng</p></c:when>
+                                <c:when test="${employee.getEducationDegreeId()==3}"><p>Đại học</p></c:when>
+                                <c:when test="${employee.getEducationDegreeId()==4}"><p>Sau đại học</p></c:when>
+                            </c:choose>
+                        </td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${employee.getDivisionId()==1}"><p>Sale – Marketing</p></c:when>
+                                <c:when test="${employee.getDivisionId()==2}"><p>Hành chính</p></c:when>
+                                <c:when test="${employee.getDivisionId()==3}"><p>Phục vụ</p></c:when>
+                                <c:when test="${employee.getDivisionId()==4}"><p>Quản lý</p></c:when>
+                            </c:choose>
+                        </td>
+                        <td><c:out value="${employee.getUserName()}"/></td>
+                        <td>
+                            <a class="btn btn-primary"
+                               href="/employee?action=edit&employeeId=${employee.getEmployeeId()}"
+                               role="button">Edit</a>
+                            <a onclick="onDelete('${employee.getEmployeeId()}','${employee.getEmployeeName()}')"
+                               class="btn btn-danger"
                                role="button" data-toggle="modal" data-target="#modelId">Delete</a>
                         </td>
                     </tr>
@@ -67,7 +93,8 @@
                 </tbody>
             </table>
 
-            <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+            <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -78,7 +105,7 @@
                         </div>
                         <form action="/employee">
                             <input type="hidden" name="action" value="delete">
-                            <input type="hidden" name="customerId" value="" id="idEmployeeDel">
+                            <input type="hidden" name="employeeId" value="" id="idEmployeeDel">
                             <div class="modal-body">
                                 <div class="container-fluid">
                                     Bạn có muốn xóa <input style="border: none;outline: none;color: blue"
@@ -106,13 +133,13 @@
     }
 </script>
 <script>
-    $(document).ready(function() {
-        $('#tableEmployee').dataTable( {
+    $(document).ready(function () {
+        $('#tableEmployee').dataTable({
             "dom": 'lrtip',
             "lengthChange": false,
             "pageLength": 3
-        } );
-    } );
+        });
+    });
 </script>
 </body>
 </html>

@@ -27,43 +27,57 @@
                     <legend>Customer Information</legend>
                     <table>
                         <c:if test="${customer != null}">
-                            <input type="hidden" name="customerId" id="customerId" value="${customer.getCustomerId()}">
+                            <input class="form-control" type="hidden" name="customerId" id="customerId" value="${customer.getCustomerId()}">
                         </c:if>
                         <tr>
                             <th>Customer Code:</th>
-                            <td><input type="text" name="customerCode" id="customerCode" value="${customer.getCustomerCode()}"></td>
+                            <td><input class="form-control" type="text" name="customerCode" id="customerCode" value="${customer.getCustomerCode()}"></td>
                         </tr>
                         <tr>
                             <th>Customer Name:</th>
-                            <td><input type="text" name="customerName" id="customerName" value="${customer.getCustomerName()}"></td>
+                            <td><input class="form-control" type="text" name="customerName" id="customerName" value="${customer.getCustomerName()}"></td>
                         </tr>
                         <tr>
                             <th>Customer Birthday:</th>
-                            <td><input type="date" name="customerBirthday" id="customerBirthday" value="${customer.getCustomerBirthday()}"></td>
+                            <td><input class="form-control" type="date" name="customerBirthday" id="customerBirthday" value="${customer.getCustomerBirthday()}"></td>
                         </tr>
                         <tr>
                             <th>Customer Gender:</th>
-                            <td><input type="text" name="customerGender" id="customerGender" value="${customer.getCustomerGender()}"></td>
+                            <td>
+                                <select class="form-control" id="customerGender" name="customerGender" value="${customer.getCustomerGender()}">
+                                    <option value="Nam" ${customer.customerGender == "Nam" ? 'selected': ''}>Nam</option>
+                                    <option value="Nữ" ${customer.customerGender == "Nữ" ? 'selected': ''}>Nữ</option>
+                                    <option value="Khác" ${customer.customerGender == "Khác" ? 'selected': ''}>Khác</option>
+                                </select>
+                            </td>
                         </tr>
                         <tr>
                             <th>Customer Id Card:</th>
-                            <td><input type="number" name="customerIdCard" id="customerIdCard" value="${customer.getCustomerIdCard()}"></td>
+                            <td><input class="form-control" type="number" name="customerIdCard" id="customerIdCard" value="${customer.getCustomerIdCard()}"></td>
                         </tr>
                         <tr>
                             <th>Customer Phone:</th>
-                            <td><input type="number" name="customerPhone" id="customerPhone" value="${customer.getCustomerPhone()}"></td>
+                            <td><input class="form-control" type="number" name="customerPhone" id="customerPhone" value="${customer.getCustomerPhone()}"></td>
                         </tr>
                         <tr>
                             <th>Customer Email:</th>
-                            <td><input type="text" name="customerEmail" id="customerEmail" value="${customer.getCustomerEmail()}"></td>
+                            <td><input class="form-control" type="text" name="customerEmail" id="customerEmail" value="${customer.getCustomerEmail()}"></td>
                         </tr>
                         <tr>
                             <th>Customer Address:</th>
-                            <td><input type="text" name="customerAddress" id="customerAddress" value="${customer.getCustomerAddress()}"></td>
+                            <td><input class="form-control" type="text" name="customerAddress" id="customerAddress" value="${customer.getCustomerAddress()}"></td>
                         </tr>
                         <tr>
-                            <th>Customer Type Id:</th>
-                            <td><input type="number" name="customerTypeId" id="customerTypeId" value="${customer.getCustomerTypeId()}"></td>
+                            <th>Customer Type:</th>
+                            <td>
+                                <select class="form-control" id="customerTypeId" name="customerTypeId" value="${customer.getCustomerTypeId()}">
+                                    <option value="1" ${customer.customerTypeId == 1 ? 'selected': ''}>Diamond</option>
+                                    <option value="2" ${customer.customerTypeId == 2 ? 'selected': ''}>Platinium</option>
+                                    <option value="3" ${customer.customerTypeId == 3 ? 'selected': ''}>Gold</option>
+                                    <option value="4" ${customer.customerTypeId == 4 ? 'selected': ''}>Silver</option>
+                                    <option value="5" ${customer.customerTypeId == 5 ? 'selected': ''}>Member</option>
+                                </select>
+                            </td>
                         </tr>
                         <tr>
                             <td><input type="submit" value="Edit customer"></td>

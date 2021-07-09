@@ -1,9 +1,8 @@
 package controller;
 
 import model.bean.Contract;
-import model.bean.Service;
-import model.service.ContractService;
-import model.service.ContractServiceImpl;
+import model.service.contract.ContractService;
+import model.service.contract.ContractServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "ContractServlet", urlPatterns = {"/contract"})
 public class ContractServlet extends HttpServlet {
@@ -46,8 +46,15 @@ public class ContractServlet extends HttpServlet {
         Contract contract = new Contract(contractStartDate, contractEndDate, contractDeposit, contractTotalMoney,
                 employeeId, customerId, serviceId);
         try {
-            contractService.insertContract(contract);
-            listContract(request, response);
+            Map<String, String> mapMessage =  contractService.insertContract(contract);
+            if (mapMessage.isEmpty()) {
+                listContract(request, response);
+            } else {
+                request.setAttribute("messContractDeposit", mapMessage.get("contractDeposit"));
+                request.setAttribute("messContractTotalMoney", mapMessage.get("contractTotalMoney"));
+                request.setAttribute("contract",contract);
+                showNewContract(request, response);
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

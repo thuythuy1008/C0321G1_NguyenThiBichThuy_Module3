@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: ADMIN
@@ -23,72 +24,115 @@
             <form action="/employee" method="post">
                 <input type="hidden" name="action" value="create">
                 <fieldset>
-                    <table >
+                    <table>
                         <legend>Employee information</legend>
                         <tr>
                             <th>Employee Name:</th>
                             <td>
-                                <input type="text" name="employeeName" id="employeeName" size="45"/>
+                                <input class="form-control" type="text" name="employeeName" id="employeeName"
+                                       aria-describedby="name_employee" size="45" value="${employee.getEmployeeName()}"/>
+                                <c:if test="${messEmployeeName != null}">
+                                    <small id="name_employee" class="form-text text-danger">${messEmployeeName}</small>
+                                </c:if>
                             </td>
                         </tr>
                         <tr>
                             <th>Employee Birthday:</th>
                             <td>
-                                <input type="date" name="employeeBirthday" id="employeeBirthday" size="45"/>
+                                <input class="form-control" type="date" name="employeeBirthday" id="employeeBirthday"
+                                       size="45" value="${employee.getEmployeeBirthday()}"/>
                             </td>
                         </tr>
                         <tr>
                             <th>Employee Id Card:</th>
                             <td>
-                                <input type="number" name="employeeIdCard" id="employeeIdCard" size="45"/>
+                                <input class="form-control" type="number" name="employeeIdCard" id="employeeIdCard"
+                                       size="45" aria-describedby="idCard_employee" value="${employee.getEmployeeIdCard()}"/>
+                                <c:if test="${messEmployeeIdCard != null}">
+                                    <small id="idCard_employee" class="form-text text-danger">${messEmployeeIdCard}</small>
+                                </c:if>
                             </td>
                         </tr>
                         <tr>
                             <th>Employee Salary:</th>
                             <td>
-                                <input type="number" name="employeeSalary" id="employeeSalary" size="45"/>
+                                <input class="form-control" type="number" name="employeeSalary" id="employeeSalary"
+                                       size="45" aria-describedby="salary_employee" value="${employee.getEmployeeSalary()}"/>
+                                <c:if test="${messEmployeeSalary != null}">
+                                    <small id="salary_employee" class="form-text text-danger">${messEmployeeSalary}</small>
+                                </c:if>
                             </td>
                         </tr>
                         <tr>
                             <th>Employee Phone:</th>
                             <td>
-                                <input type="number" name="employeePhone" id="employeePhone" size="45"/>
+                                <input class="form-control" type="number" name="employeePhone" id="employeePhone"
+                                       size="45" aria-describedby="phone_employee" value="${employee.getEmployeePhone()}"/>
+                                <c:if test="${messEmployeePhone != null}">
+                                    <small id="phone_employee" class="form-text text-danger">${messEmployeePhone}</small>
+                                </c:if>
                             </td>
                         </tr>
                         <tr>
                             <th>Employee Email:</th>
                             <td>
-                                <input type="text" name="employeeEmail" id="employeeEmail" size="45"/>
+                                <input class="form-control" type="text" name="employeeEmail" id="employeeEmail"
+                                       size="45" aria-describedby="email_employee" value="${employee.getEmployeeEmail()}"/>
+                                <c:if test="${messEmployeeEmail != null}">
+                                    <small id="email_employee" class="form-text text-danger">${messEmployeeEmail}</small>
+                                </c:if>
                             </td>
                         </tr>
                         <tr>
                             <th>Employee Address:</th>
                             <td>
-                                <input type="text" name="employeeAddress" id="employeeAddress" size="45"/>
+                                <input class="form-control" type="text" name="employeeAddress" id="employeeAddress"
+                                       size="45" value="${employee.getEmployeeAddress()}"/>
                             </td>
                         </tr>
                         <tr>
-                            <th>Position Id:</th>
+                            <th>Position:</th>
                             <td>
-                                <input type="number" name="positionId" id="positionId" size="45"/>
+                                <select class="form-control" id="positionId" name="positionId"
+                                        value="${employee.getPositionId()}">
+                                    <option value="1" ${employee.positionId == "1" ? 'selected': ''}>Lễ tân</option>
+                                    <option value="2" ${employee.positionId == "2" ? 'selected': ''}>Phục vụ</option>
+                                    <option value="3" ${employee.positionId == "3" ? 'selected': ''}>Chuyên viên</option>
+                                    <option value="4" ${employee.positionId == "4" ? 'selected': ''}>Giám sát</option>
+                                    <option value="5" ${employee.positionId == "5" ? 'selected': ''}>Quản lý</option>
+                                    <option value="6" ${employee.positionId == "6" ? 'selected': ''}>Giám đốc</option>
+                                </select>
                             </td>
                         </tr>
                         <tr>
                             <th>Education Degree Id:</th>
                             <td>
-                                <input type="number" name="educationDegreeId" id="educationDegreeId" size="45"/>
+                                <select class="form-control" id="educationDegreeId" name="educationDegreeId"
+                                        value="${employee.getEducationDegreeId()}">
+                                    <option value="1" ${employee.educationDegreeId == "1" ? 'selected': ''}>Trung cấp</option>
+                                    <option value="2" ${employee.educationDegreeId == "2" ? 'selected': ''}>Cao đẳng</option>
+                                    <option value="3" ${employee.educationDegreeId == "3" ? 'selected': ''}>Đại học</option>
+                                    <option value="4" ${employee.educationDegreeId == "4" ? 'selected': ''}>Sau đại học</option>
+                                </select>
                             </td>
                         </tr>
                         <tr>
                             <th>Division Id:</th>
                             <td>
-                                <input type="number" name="divisionId" id="divisionId" size="45"/>
+                                <select class="form-control" id="divisionId" name="divisionId"
+                                        value="${employee.getDivisionId()}">
+                                    <option value="1" ${employee.divisionId == "1" ? 'selected': ''}>Sale – Marketing</option>
+                                    <option value="2" ${employee.divisionId == "2" ? 'selected': ''}>Hành chính</option>
+                                    <option value="3" ${employee.divisionId == "3" ? 'selected': ''}>Phục vụ</option>
+                                    <option value="4" ${employee.divisionId == "4" ? 'selected': ''}>Quản lý</option>
+                                </select>
                             </td>
                         </tr>
                         <tr>
                             <th>User Name:</th>
                             <td>
-                                <input type="text" name="userName" id="userName" size="45"/>
+                                <input class="form-control" type="text" name="userName" id="userName" size="45"
+                                       value="${employee.getUserName()}"/>
                             </td>
                         </tr>
                         <tr>

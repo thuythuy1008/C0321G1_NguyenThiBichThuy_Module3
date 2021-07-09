@@ -27,51 +27,93 @@
                     <legend>Employee Information</legend>
                     <table>
                         <c:if test="${employee != null}">
-                            <input type="hidden" name="employeeId" id="employeeId" value="${employee.getEmployeeId()}">
+                            <input class="form-control" type="hidden" name="employeeId" id="employeeId"
+                                   value="${employee.getEmployeeId()}">
                         </c:if>
                         <tr>
                             <th>Employee Name:</th>
-                            <td><input type="text" name="employeeName" id="employeeName" value="${employee.getEmployeeName()}"></td>
+                            <td><input class="form-control" type="text" name="employeeName" id="employeeName"
+                                       value="${employee.getEmployeeName()}"></td>
                         </tr>
                         <tr>
                             <th>Employee Birthday:</th>
-                            <td><input type="date" name="employeeBirthday" id="employeeBirthday" value="${employee.getEmployeeBirthday()}"></td>
+                            <td><input class="form-control" type="date" name="employeeBirthday" id="employeeBirthday"
+                                       value="${employee.getEmployeeBirthday()}"></td>
                         </tr>
                         <tr>
                             <th>Employee Id Card:</th>
-                            <td><input type="number" name="employeeIdCard" id="employeeIdCard" value="${employee.getEmployeeIdCard()}"></td>
+                            <td><input class="form-control" type="number" name="employeeIdCard" id="employeeIdCard"
+                                       value="${employee.getEmployeeIdCard()}"></td>
                         </tr>
                         <tr>
                             <th>Employee Salary:</th>
-                            <td><input type="number" name="employeeSalary" id="employeeSalary" value="${employee.getEmployeeSalary()}"></td>
+                            <td><input class="form-control" type="number" name="employeeSalary" id="employeeSalary"
+                                       value="${employee.getEmployeeSalary()}"></td>
                         </tr>
                         <tr>
                             <th>Employee Phone:</th>
-                            <td><input type="number" name="employeePhone" id="employeePhone" value="${employee.getEmployeePhone()}"></td>
+                            <td><input class="form-control" type="number" name="employeePhone" id="employeePhone"
+                                       value="${employee.getEmployeePhone()}"></td>
                         </tr>
                         <tr>
                             <th>Employee Email:</th>
-                            <td><input type="text" name="employeeEmail" id="employeeEmail" value="${employee.getEmployeeEmail()}"></td>
+                            <td><input class="form-control" type="text" name="employeeEmail" id="employeeEmail"
+                                       value="${employee.getEmployeeEmail()}"></td>
                         </tr>
                         <tr>
                             <th>Employee Address:</th>
-                            <td><input type="text" name="employeeAddress" id="employeeAddress" value="${employee.getEmployeeAddress()}"></td>
+                            <td><input class="form-control" type="text" name="employeeAddress" id="employeeAddress"
+                                       value="${employee.getEmployeeAddress()}"></td>
                         </tr>
                         <tr>
-                            <th>Position Id:</th>
-                            <td><input type="number" name="positionId" id="positionId" value="${employee.getPositionId()}"></td>
+                            <th>Position:</th>
+                            <td>
+                                <select class="form-control" id="positionId" name="positionId"
+                                        value="${employee.getPositionId()}">
+                                    <option value="1" ${employee.positionId == "1" ? 'selected': ''}>Lễ tân</option>
+                                    <option value="2" ${employee.positionId == "2" ? 'selected': ''}>Phục vụ</option>
+                                    <option value="3" ${employee.positionId == "3" ? 'selected': ''}>Chuyên viên
+                                    </option>
+                                    <option value="4" ${employee.positionId == "4" ? 'selected': ''}>Giám sát</option>
+                                    <option value="5" ${employee.positionId == "5" ? 'selected': ''}>Quản lý</option>
+                                    <option value="6" ${employee.positionId == "6" ? 'selected': ''}>Giám đốc</option>
+                                </select>
+                            </td>
                         </tr>
                         <tr>
-                            <th>Education Degree Id:</th>
-                            <td><input type="number" name="educationDegreeId" id="educationDegreeId" value="${employee.getEducationDegreeId()}"></td>
+                            <th>Education Degree:</th>
+                            <td>
+                                <select class="form-control" id="educationDegreeId" name="educationDegreeId"
+                                        value="${employee.getEducationDegreeId()}">
+                                    <option value="1" ${employee.educationDegreeId == "1" ? 'selected': ''}>Trung cấp
+                                    </option>
+                                    <option value="2" ${employee.educationDegreeId == "2" ? 'selected': ''}>Cao đẳng
+                                    </option>
+                                    <option value="3" ${employee.educationDegreeId == "3" ? 'selected': ''}>Đại học
+                                    </option>
+                                    <option value="4" ${employee.educationDegreeId == "4" ? 'selected': ''}>Sau đại
+                                        học
+                                    </option>
+                                </select>
+                            </td>
                         </tr>
                         <tr>
-                            <th>Division Id:</th>
-                            <td><input type="number" name="divisionId" id="divisionId" value="${employee.getDivisionId()}"></td>
+                            <th>Division:</th>
+                            <td>
+                                <select class="form-control" id="divisionId" name="divisionId"
+                                        value="${employee.getDivisionId()}">
+                                    <option value="1" ${employee.divisionId == "1" ? 'selected': ''}>Sale – Marketing
+                                    </option>
+                                    <option value="2" ${employee.divisionId == "2" ? 'selected': ''}>Hành chính</option>
+                                    <option value="3" ${employee.divisionId == "3" ? 'selected': ''}>Phục vụ</option>
+                                    <option value="4" ${employee.divisionId == "4" ? 'selected': ''}>Quản lý</option>
+                                </select>
+                            </td>
                         </tr>
                         <tr>
                             <th>User Name:</th>
-                            <td><input type="text" name="userName" id="userName" value="${employee.getUserName()}"></td>
+                            <td><input class="form-control" type="text" name="userName" id="userName"
+                                       value="${employee.getUserName()}"></td>
                         </tr>
                         <tr>
                             <td><input type="submit" value="Edit employee"></td>

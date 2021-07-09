@@ -32,7 +32,7 @@
                         <tr>
                             <th>Contract Detail Id</th>
                             <th>Contract Id</th>
-                            <th>Attach Service Id</th>
+                            <th>Attach Service</th>
                             <th>Quantity</th>
                             <th>Actions</th>
                         </tr>
@@ -42,7 +42,16 @@
                             <tr>
                                 <td><c:out value="${contractDetail.getContractDetailId()}"/></td>
                                 <td><c:out value="${contractDetail.getContractId()}"/></td>
-                                <td><c:out value="${contractDetail.getAttachServiceId()}"/></td>
+                                <td>
+<%--                                    <c:out value="${contractDetail.getAttachServiceId()}"/>--%>
+                                    <c:choose>
+                                        <c:when test="${contractDetail.getAttachServiceId()==1}"><p>Massage</p></c:when>
+                                        <c:when test="${contractDetail.getAttachServiceId()==2}"><p>Karaoke</p></c:when>
+                                        <c:when test="${contractDetail.getAttachServiceId()==3}"><p>Thức ăn</p></c:when>
+                                        <c:when test="${contractDetail.getAttachServiceId()==4}"><p>Nước uống</p></c:when>
+                                        <c:when test="${contractDetail.getAttachServiceId()==5}"><p>Xe thuê</p></c:when>
+                                    </c:choose>
+                                </td>
                                 <td><c:out value="${contractDetail.getQuantity()}"/></td>
                                 <td>
                                     <a class="btn btn-primary" href="/contractDetail?action=edit&contractDetailId=${contractDetail.getContractDetailId()}" role="button">Edit</a>

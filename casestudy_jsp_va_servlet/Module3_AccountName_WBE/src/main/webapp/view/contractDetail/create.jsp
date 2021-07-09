@@ -28,19 +28,31 @@
                         <tr>
                             <th>Contract Id:</th>
                             <td>
-                                <input type="number" name="contractId" id="contractId" size="45"/>
+                                <input class="form-control" type="number" name="contractId" id="contractId" size="45"
+                                       value="${contractDetail.getContractId()}"/>
                             </td>
                         </tr>
                         <tr>
-                            <th>Attach Service Id:</th>
+                            <th>Attach Service:</th>
                             <td>
-                                <input type="number" name="attachServiceId" id="attachServiceId" size="45"/>
+                                <select class="form-control" id="attachServiceId" name="attachServiceId"
+                                        value="${contractDetail.getAttachServiceId()}">
+                                    <option value="1" ${contractDetail.getAttachServiceId() == "1" ? 'selected': ''}>Massage</option>
+                                    <option value="2" ${contractDetail.getAttachServiceId() == "2" ? 'selected': ''}>Karaoke</option>
+                                    <option value="3" ${contractDetail.getAttachServiceId() == "3" ? 'selected': ''}>Thức ăn</option>
+                                    <option value="4" ${contractDetail.getAttachServiceId() == "4" ? 'selected': ''}>Nước uống</option>
+                                    <option value="5" ${contractDetail.getAttachServiceId() == "5" ? 'selected': ''}>Xe thuê</option>
+                                </select>
                             </td>
                         </tr>
                         <tr>
                             <th>Quantity:</th>
                             <td>
-                                <input type="number" name="quantity" id="quantity" size="45"/>
+                                <input class="form-control" type="number" name="quantity" id="quantity" size="45"
+                                       aria-describedby="quantity" value="${contractDetail.getQuantity()}"/>
+                                <c:if test="${messQuantity != null}">
+                                    <small id="quantity" class="form-text text-danger">${messQuantity}</small>
+                                </c:if>
                             </td>
                         </tr>
                         <tr>

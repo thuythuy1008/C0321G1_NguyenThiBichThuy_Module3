@@ -1,9 +1,8 @@
 package controller;
 
-import model.bean.Customer;
 import model.bean.Service;
-import model.service.ServiceService;
-import model.service.ServiceServiceImpl;
+import model.service.service.ServiceService;
+import model.service.service.ServiceServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "ServiceServlet",urlPatterns = {"/service"})
 public class ServiceServlet extends HttpServlet {
@@ -52,8 +52,16 @@ public class ServiceServlet extends HttpServlet {
         Service service = new Service(serviceCode, serviceName, serviceArea, serviceCost, serviceMaxPeople,
                 serviceTypeId, rentTypeId);
         try {
-            serviceService.insertService(service);
-            listService(request, response);
+            Map<String, String> mapMessage = serviceService.insertService(service);
+            if (mapMessage.isEmpty()) {
+                listService(request, response);
+            } else {
+                request.setAttribute("messServiceCode", mapMessage.get("serviceCode"));
+                request.setAttribute("messServiceName", mapMessage.get("serviceName"));
+                request.setAttribute("messServiceCost", mapMessage.get("serviceCost"));
+                request.setAttribute("service",service);
+                showNewRoom(request, response);
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -73,8 +81,17 @@ public class ServiceServlet extends HttpServlet {
         Service service = new Service(serviceCode, serviceName, serviceArea, serviceCost, serviceMaxPeople,
                 standardRoom, descriptionOtherConvenience, numberOfFloors, serviceTypeId, rentTypeId);
         try {
-            serviceService.insertService(service);
-            listService(request, response);
+            Map<String, String> mapMessage = serviceService.insertService(service);
+            if (mapMessage.isEmpty()) {
+                listService(request, response);
+            } else {
+                request.setAttribute("messServiceCode", mapMessage.get("serviceCode"));
+                request.setAttribute("messServiceName", mapMessage.get("serviceName"));
+                request.setAttribute("messServiceCost", mapMessage.get("serviceCost"));
+                request.setAttribute("messNumberOfFloors", mapMessage.get("numberOfFloors"));
+                request.setAttribute("service",service);
+                showNewHouse(request, response);
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -96,8 +113,17 @@ public class ServiceServlet extends HttpServlet {
         Service service = new Service(serviceCode, serviceName, serviceArea, serviceCost, serviceMaxPeople,
                 standardRoom, descriptionOtherConvenience, pollArea, numberOfFloors, serviceTypeId, rentTypeId);
         try {
-            serviceService.insertService(service);
-            listService(request, response);
+            Map<String, String> mapMessage = serviceService.insertService(service);
+            if (mapMessage.isEmpty()) {
+                listService(request, response);
+            } else {
+                request.setAttribute("messServiceCode", mapMessage.get("serviceCode"));
+                request.setAttribute("messServiceName", mapMessage.get("serviceName"));
+                request.setAttribute("messServiceCost", mapMessage.get("serviceCost"));
+                request.setAttribute("messNumberOfFloors", mapMessage.get("numberOfFloors"));
+                request.setAttribute("service",service);
+                showNewVilla(request, response);
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

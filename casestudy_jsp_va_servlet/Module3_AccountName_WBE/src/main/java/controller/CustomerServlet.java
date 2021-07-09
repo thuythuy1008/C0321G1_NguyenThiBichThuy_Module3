@@ -1,8 +1,8 @@
 package controller;
 
 import model.bean.Customer;
-import model.service.CustomerService;
-import model.service.CustomerServiceImpl;
+import model.service.customer.CustomerService;
+import model.service.customer.CustomerServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "CustomerServlet",urlPatterns = {"/customer"})
 public class CustomerServlet extends HttpServlet {
@@ -95,8 +96,18 @@ public class CustomerServlet extends HttpServlet {
         Customer customer = new Customer(customerCode, customerName, customerBirthday, customerGender,
                 customerIdCard, customerPhone, customerEmail, customerAddress, customerTypeId);
         try {
-            service.insertCustomer(customer);
-            listCustomers(request, response);
+            Map<String, String> mapMessage = service.insertCustomer(customer);
+            if (mapMessage.isEmpty()) {
+                listCustomers(request, response);
+            } else {
+                request.setAttribute("messCustomerCode", mapMessage.get("customerCode"));
+                request.setAttribute("messCustomerName", mapMessage.get("customerName"));
+                request.setAttribute("messCustomerIdCard", mapMessage.get("customerIdCard"));
+                request.setAttribute("messCustomerPhone", mapMessage.get("customerPhone"));
+                request.setAttribute("messCustomerEmail", mapMessage.get("customerEmail"));
+                request.setAttribute("customer",customer);
+                showNewCustomer(request, response);
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

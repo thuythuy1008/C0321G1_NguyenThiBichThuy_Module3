@@ -21,7 +21,7 @@
             <jsp:include page="/layout/employee-left.jsp"></jsp:include>
         </div>
         <div class="col-10">
-            <table class="table table-striped">
+            <table class="table table-striped" style="overflow-x:scroll; max-width: 100%; display: inline-block">
                 <thead>
                 <tr>
                     <th>Employee Id</th>
@@ -32,9 +32,9 @@
                     <th>Employee Phone</th>
                     <th>Employee Email</th>
                     <th>Employee Address</th>
-                    <th>Position Id</th>
-                    <th>Education Degree Id</th>
-                    <th>Division Id</th>
+                    <th>Position</th>
+                    <th>Education Degree</th>
+                    <th>Division</th>
                     <th>User Name</th>
                     <th>Actions</th>
                 </tr>
@@ -50,13 +50,38 @@
                     <td><c:out value="${employee.getEmployeePhone()}"/></td>
                     <td><c:out value="${employee.getEmployeeEmail()}"/></td>
                     <td><c:out value="${employee.getEmployeeAddress()}"/></td>
-                    <td><c:out value="${employee.getPositionId()}"/></td>
-                    <td><c:out value="${employee.getEducationDegreeId()}"/></td>
-                    <td><c:out value="${employee.getDivisionId()}"/></td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${employee.getPositionId()==1}"><p>Lễ tân</p></c:when>
+                            <c:when test="${employee.getPositionId()==2}"><p>Phục vụ</p></c:when>
+                            <c:when test="${employee.getPositionId()==3}"><p>Chuyên viên</p></c:when>
+                            <c:when test="${employee.getPositionId()==4}"><p>Giám sát</p></c:when>
+                            <c:when test="${employee.getPositionId()==5}"><p>Quản lý</p></c:when>
+                            <c:when test="${employee.getPositionId()==6}"><p>Giám đốc</p></c:when>
+                        </c:choose>
+                    </td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${employee.getEducationDegreeId()==1}"><p>Trung cấp</p></c:when>
+                            <c:when test="${employee.getEducationDegreeId()==2}"><p>Cao đẳng</p></c:when>
+                            <c:when test="${employee.getEducationDegreeId()==3}"><p>Đại học</p></c:when>
+                            <c:when test="${employee.getEducationDegreeId()==4}"><p>Sau đại học</p></c:when>
+                        </c:choose>
+                    </td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${employee.getDivisionId()==1}"><p>Sale – Marketing</p></c:when>
+                            <c:when test="${employee.getDivisionId()==2}"><p>Hành chính</p></c:when>
+                            <c:when test="${employee.getDivisionId()==3}"><p>Phục vụ</p></c:when>
+                            <c:when test="${employee.getDivisionId()==4}"><p>Quản lý</p></c:when>
+                        </c:choose>
+                    </td>
                     <td><c:out value="${employee.getUserName()}"/></td>
                     <td>
-                        <a class="btn btn-primary" href="/employee?action=edit&employeeId=${employee.getEmployeeId()}" role="button">Edit</a>
-                        <a onclick="onDelete('${employee.getEmployeeId()}','${employee.getEmployeeName()}')" class="btn btn-danger"
+                        <a class="btn btn-primary" href="/employee?action=edit&employeeId=${employee.getEmployeeId()}"
+                           role="button">Edit</a>
+                        <a onclick="onDelete('${employee.getEmployeeId()}','${employee.getEmployeeName()}')"
+                           class="btn btn-danger"
                            role="button" data-toggle="modal" data-target="#modelId">Delete</a>
                     </td>
                 </tr>
@@ -64,7 +89,8 @@
                 </tbody>
             </table>
 
-            <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+            <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">

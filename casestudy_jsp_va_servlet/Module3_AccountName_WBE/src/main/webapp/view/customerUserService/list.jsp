@@ -35,23 +35,25 @@
                     <th>Contract Id</th>
                     <th>Contract Detail Id</th>
                     <th>Attach Service Name</th>
+                    <th>Total Money</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="customer" items="${customerList}">
+                <c:forEach var="employee" items="${customerList}">
                     <tr>
-                        <td><c:out value="${customer.getCustomerId()}"/></td>
-                        <td><c:out value="${customer.getCustomerCode()}"/></td>
-                        <td><c:out value="${customer.getCustomerName()}"/></td>
-                        <td><c:out value="${customer.getCustomerIdCard()}"/></td>
-                        <td><c:out value="${customer.getCustomerAddress()}"/></td>
-                        <td><c:out value="${customer.getContractId()}"/></td>
-                        <td><c:out value="${customer.getContractDetailId()}"/></td>
-                        <td><c:out value="${customer.getAttachServiceName()}"/></td>
+                        <td><c:out value="${employee.getCustomerId()}"/></td>
+                        <td><c:out value="${employee.getCustomerCode()}"/></td>
+                        <td><c:out value="${employee.getCustomerName()}"/></td>
+                        <td><c:out value="${employee.getCustomerIdCard()}"/></td>
+                        <td><c:out value="${employee.getCustomerAddress()}"/></td>
+                        <td><c:out value="${employee.getContractId()}"/></td>
+                        <td><c:out value="${employee.getContractDetailId()}"/></td>
+                        <td><c:out value="${employee.getAttachServiceName()}"/></td>
+                        <td><c:out value="${employee.getTotalMoney()}"/></td>
                         <td>
-                            <a class="btn btn-primary" href="/customerUserService?action=edit&customerId=${customer.getCustomerId()}" role="button">Edit</a>
-                            <a onclick="onDelete('${customer.getCustomerId()}','${customer.getCustomerCode()}')" class="btn btn-danger"
+                            <a class="btn btn-primary" href="/customerUserService?action=edit&customerId=${employee.getCustomerId()}" role="button">Edit</a>
+                            <a onclick="onDelete('${employee.getCustomerId()}','${employee.getCustomerCode()}')" class="btn btn-danger"
                                role="button" data-toggle="modal" data-target="#modelId">Delete</a>
                         </td>
                     </tr>

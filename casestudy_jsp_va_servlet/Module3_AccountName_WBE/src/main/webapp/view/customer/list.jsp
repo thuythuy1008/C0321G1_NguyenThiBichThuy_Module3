@@ -24,46 +24,58 @@
             <center>
                 <h1>Customer Management</h1>
             </center>
-                    <table id="tableCustomer" class="table table-striped table-bordered" style="width: 100%">
-                        <thead>
-                        <tr>
-                            <th>Customer Id</th>
-                            <th>Customer Code</th>
-                            <th>Customer Name</th>
-                            <th>Customer Birthday</th>
-                            <th>Customer Gender</th>
-                            <th>Customer Id Card</th>
-                            <th>Customer Phone</th>
-                            <th>Customer Email</th>
-                            <th>Customer Address</th>
-                            <th>Customer Type Id</th>
-                            <th>Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach var="customer" items="${customerList}">
-                            <tr>
-                                <td><c:out value="${customer.getCustomerId()}"/></td>
-                                <td><c:out value="${customer.getCustomerCode()}"/></td>
-                                <td><c:out value="${customer.getCustomerName()}"/></td>
-                                <td><c:out value="${customer.getCustomerBirthday()}"/></td>
-                                <td><c:out value="${customer.getCustomerGender()}"/></td>
-                                <td><c:out value="${customer.getCustomerIdCard()}"/></td>
-                                <td><c:out value="${customer.getCustomerPhone()}"/></td>
-                                <td><c:out value="${customer.getCustomerEmail()}"/></td>
-                                <td><c:out value="${customer.getCustomerAddress()}"/></td>
-                                <td><c:out value="${customer.getCustomerTypeId()}"/></td>
-                                <td>
-                                    <a class="btn btn-primary" href="/customer?action=edit&customerId=${customer.getCustomerId()}" role="button">Edit</a>
-                                    <a onclick="onDelete('${customer.getCustomerId()}','${customer.getCustomerCode()}')" class="btn btn-danger"
-                                       role="button" data-toggle="modal" data-target="#modelId">Delete</a>
-                                </td>
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
+            <table id="tableCustomer" class="table table-striped table-bordered" style="overflow-x:scroll; max-width: 100%; display: inline-block">
+                <thead>
+                <tr>
+                    <th>Customer Id</th>
+                    <th>Customer Code</th>
+                    <th>Customer Name</th>
+                    <th>Customer Birthday</th>
+                    <th>Customer Gender</th>
+                    <th>Customer Id Card</th>
+                    <th>Customer Phone</th>
+                    <th>Customer Email</th>
+                    <th>Customer Address</th>
+                    <th>Customer Type</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="employee" items="${customerList}">
+                    <tr>
+                        <td><c:out value="${employee.getCustomerId()}"/></td>
+                        <td><c:out value="${employee.getCustomerCode()}"/></td>
+                        <td><c:out value="${employee.getCustomerName()}"/></td>
+                        <td><c:out value="${employee.getCustomerBirthday()}"/></td>
+                        <td><c:out value="${employee.getCustomerGender()}"/></td>
+                        <td><c:out value="${employee.getCustomerIdCard()}"/></td>
+                        <td><c:out value="${employee.getCustomerPhone()}"/></td>
+                        <td><c:out value="${employee.getCustomerEmail()}"/></td>
+                        <td><c:out value="${employee.getCustomerAddress()}"/></td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${employee.getCustomerTypeId()==1}"><p>Diamond</p></c:when>
+                                <c:when test="${employee.getCustomerTypeId()==2}"><p>Platinium</p></c:when>
+                                <c:when test="${employee.getCustomerTypeId()==3}"><p>Gold</p></c:when>
+                                <c:when test="${employee.getCustomerTypeId()==4}"><p>Silver</p></c:when>
+                                <c:when test="${employee.getCustomerTypeId()==5}"><p>Member</p></c:when>
+                            </c:choose>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary"
+                               href="/customer?action=edit&customerId=${employee.getCustomerId()}"
+                               role="button">Edit</a>
+                            <a onclick="onDelete('${employee.getCustomerId()}','${employee.getCustomerCode()}')"
+                               class="btn btn-danger"
+                               role="button" data-toggle="modal" data-target="#modelId">Delete</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
 
-            <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+            <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -102,13 +114,13 @@
     }
 </script>
 <script>
-    $(document).ready(function() {
-        $('#tableCustomer').dataTable( {
+    $(document).ready(function () {
+        $('#tableCustomer').dataTable({
             "dom": 'lrtip',
             "lengthChange": false,
             "pageLength": 3
-        } );
-    } );
+        });
+    });
 </script>
 </body>
 </html>

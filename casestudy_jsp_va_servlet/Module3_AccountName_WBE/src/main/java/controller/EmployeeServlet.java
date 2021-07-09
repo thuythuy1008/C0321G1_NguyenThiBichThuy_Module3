@@ -1,9 +1,8 @@
 package controller;
 
-import model.bean.Customer;
 import model.bean.Employee;
-import model.service.EmployeeService;
-import model.service.EmployeeServiceImpl;
+import model.service.employee.EmployeeService;
+import model.service.employee.EmployeeServiceImpl;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 @WebServlet(name = "EmployeeServlet", urlPatterns = {"/employee"})
 public class EmployeeServlet extends HttpServlet {
@@ -102,8 +102,18 @@ public class EmployeeServlet extends HttpServlet {
         Employee employee = new Employee(employeeName, employeeBirthday, employeeIdCard, employeeSalary,
                 employeePhone, employeeEmail, employeeAddress, positionId, educationDegreeId, divisionId, userName);
         try {
-            employeeService.insertEmployee(employee);
-            listEmployees(request, response);
+            Map<String, String> mapMessage = employeeService.insertEmployee(employee);
+            if (mapMessage.isEmpty()) {
+                listEmployees(request, response);
+            } else {
+                request.setAttribute("messEmployeeName", mapMessage.get("employeeName"));
+                request.setAttribute("messEmployeeIdCard", mapMessage.get("employeeIdCard"));
+                request.setAttribute("messEmployeeSalary", mapMessage.get("employeeSalary"));
+                request.setAttribute("messEmployeePhone", mapMessage.get("employeePhone"));
+                request.setAttribute("messEmployeeEmail", mapMessage.get("employeeEmail"));
+                request.setAttribute("employee",employee);
+                showNewEmployee(request, response);
+            }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

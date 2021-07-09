@@ -14,10 +14,11 @@ public class Customer {
     private int contractId;
     private int contractDetailId;
     private String attachServiceName;
+    private double totalMoney;
     public Customer() {
     }
 
-    public Customer(int customerId, String customerCode, String customerName, String customerIdCard, String customerAddress, int contractId, int contractDetailId, String attachServiceName) {
+    public Customer(int customerId, String customerCode, String customerName, String customerIdCard, String customerAddress, int contractId, int contractDetailId, String attachServiceName, double totalMoney) {
         super();
         this.customerId = customerId;
         this.customerCode = customerCode;
@@ -27,6 +28,7 @@ public class Customer {
         this.contractId = contractId;
         this.contractDetailId = contractDetailId;
         this.attachServiceName = attachServiceName;
+        this.totalMoney = totalMoney;
     }
 
     public Customer(String customerCode, String customerName, String customerBirthday, String customerGender, String customerIdCard, String customerPhone, String customerEmail, String customerAddress, int customerTypeId) {
@@ -158,5 +160,13 @@ public class Customer {
 
     public void setAttachServiceName(String attachServiceName) {
         this.attachServiceName = attachServiceName;
+    }
+
+    public double getTotalMoney() {
+        return totalMoney;
+    }
+
+    public void setTotalMoney(double totalMoney) {
+        this.totalMoney = totalMoney;
     }
 }

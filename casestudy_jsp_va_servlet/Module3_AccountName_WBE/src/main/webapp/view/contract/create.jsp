@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: ADMIN
@@ -28,25 +29,35 @@
                         <tr>
                             <th>Contract Start Date:</th>
                             <td>
-                                <input type="date" name="contractStartDate" id="contractStartDate" size="45"/>
+                                <input type="date" name="contractStartDate" id="contractStartDate" size="45"
+                                       value="${contract.getContractStartDate()}"/>
                             </td>
                         </tr>
                         <tr>
                             <th>Contract End Date:</th>
                             <td>
-                                <input type="date" name="contractEndDate" id="contractEndDate" size="45"/>
+                                <input type="date" name="contractEndDate" id="contractEndDate" size="45"
+                                       value="${contract.getContractEndDate()}"/>
                             </td>
                         </tr>
                         <tr>
                             <th>Contract Deposit:</th>
                             <td>
-                                <input type="number" name="contractDeposit" id="contractDeposit" size="45"/>
+                                <input type="number" name="contractDeposit" id="contractDeposit" size="45"
+                                       aria-describedby="contract_deposit" value="${contract.getContractDeposit()}"/>
+                                <c:if test="${messContractDeposit != null}">
+                                    <small id="contract_deposit" class="form-text text-danger">${messContractDeposit}</small>
+                                </c:if>
                             </td>
                         </tr>
                         <tr>
                             <th>Contract Total Money:</th>
                             <td>
-                                <input type="number" name="contractTotalMoney" id="contractTotalMoney" size="45"/>
+                                <input type="number" name="contractTotalMoney" id="contractTotalMoney" size="45"
+                                       aria-describedby="contract_totalMoney" value="${contract.getContractTotalMoney()}"/>
+                                <c:if test="${messContractTotalMoney != null}">
+                                    <small id="contract_totalMoney" class="form-text text-danger">${messContractTotalMoney}</small>
+                                </c:if>
                             </td>
                         </tr>
                         <tr>

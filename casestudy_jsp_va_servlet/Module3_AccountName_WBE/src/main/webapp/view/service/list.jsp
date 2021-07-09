@@ -27,7 +27,7 @@
             <form action="/service" method="post">
                 <input type="hidden" name="action" value="list">
                 <fieldset>
-            <table id="tableService" class="table table-striped table-bordered" style="width: 100%">
+            <table id="tableService" class="table table-striped table-bordered" style="overflow-x:scroll; max-width: 100%; display: inline-block">
                 <thead>
                 <tr>
                     <th>Service Id</th>
@@ -40,29 +40,40 @@
                     <th>Description Other Convenience</th>
                     <th>Poll Area</th>
                     <th>Number Of Floors</th>
-                    <th>Service Type Id</th>
-                    <th>Rent Type Id</th>
+                    <th>Service Type</th>
+                    <th>Rent Type</th>
                     <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="customer" items="${serviceList}">
+                <c:forEach var="employee" items="${serviceList}">
                     <tr>
-                        <td><c:out value="${customer.getServiceId()}"/></td>
-                        <td><c:out value="${customer.getServiceCode()}"/></td>
-                        <td><c:out value="${customer.getServiceName()}"/></td>
-                        <td><c:out value="${customer.getServiceArea()}"/></td>
-                        <td><c:out value="${customer.getServiceCost()}"/></td>
-                        <td><c:out value="${customer.getServiceMaxPeople()}"/></td>
-                        <td><c:out value="${customer.getStandardRoom()}"/></td>
-                        <td><c:out value="${customer.getDescriptionOtherConvenience()}"/></td>
-                        <td><c:out value="${customer.getPollArea()}"/></td>
-                        <td><c:out value="${customer.getNumberOfFloors()}"/></td>
-                        <td><c:out value="${customer.getServiceTypeId()}"/></td>
-                        <td><c:out value="${customer.getRentTypeId()}"/></td>
+                        <td><c:out value="${employee.getServiceId()}"/></td>
+                        <td><c:out value="${employee.getServiceCode()}"/></td>
+                        <td><c:out value="${employee.getServiceName()}"/></td>
+                        <td><c:out value="${employee.getServiceArea()}"/></td>
+                        <td><c:out value="${employee.getServiceCost()}"/></td>
+                        <td><c:out value="${employee.getServiceMaxPeople()}"/></td>
+                        <td><c:out value="${employee.getStandardRoom()}"/></td>
+                        <td><c:out value="${employee.getDescriptionOtherConvenience()}"/></td>
+                        <td><c:out value="${employee.getPollArea()}"/></td>
+                        <td><c:out value="${employee.getNumberOfFloors()}"/></td>
                         <td>
-                            <a class="btn btn-primary" href="/service?action=edit&serviceId=${customer.getServiceId()}" role="button">Edit</a>
-                            <a onclick="onDelete('${customer.getServiceId()}','${customer.getServiceCode()}')" class="btn btn-danger"
+                            <c:choose>
+                                <c:when test="${employee.getServiceTypeId()==1}"><p>Thường</p></c:when>
+                                <c:when test="${employee.getServiceTypeId()==2}"><p>Vip</p></c:when>
+                            </c:choose>
+                        </td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${employee.getRentTypeId()==1}"><p>Ngày</p></c:when>
+                                <c:when test="${employee.getRentTypeId()==2}"><p>Tuần</p></c:when>
+                                <c:when test="${employee.getRentTypeId()==3}"><p>Tháng</p></c:when>
+                            </c:choose>
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" href="/service?action=edit&serviceId=${employee.getServiceId()}" role="button">Edit</a>
+                            <a onclick="onDelete('${employee.getServiceId()}','${employee.getServiceCode()}')" class="btn btn-danger"
                                role="button" data-toggle="modal" data-target="#modelId">Delete</a>
                         </td>
                     </tr>

@@ -35,26 +35,26 @@
                             <th>Contract End Date</th>
                             <th>Contract Deposit</th>
                             <th>Contract Total Money</th>
-                            <th>Employee Id</th>
-                            <th>Customer Id</th>
-                            <th>Service Id</th>
+                            <th>Employee</th>
+                            <th>Customer</th>
+                            <th>Service</th>
                             <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="customer" items="${contractList}">
+                        <c:forEach var="employee" items="${contractList}">
                             <tr>
-                                <td><c:out value="${customer.getContractId()}"/></td>
-                                <td><c:out value="${customer.getContractStartDate()}"/></td>
-                                <td><c:out value="${customer.getContractEndDate()}"/></td>
-                                <td><c:out value="${customer.getContractDeposit()}"/></td>
-                                <td><c:out value="${customer.getContractTotalMoney()}"/></td>
-                                <td><c:out value="${customer.getEmployeeId()}"/></td>
-                                <td><c:out value="${customer.getCustomerId()}"/></td>
-                                <td><c:out value="${customer.getServiceId()}"/></td>
+                                <td><c:out value="${employee.getContractId()}"/></td>
+                                <td><c:out value="${employee.getContractStartDate()}"/></td>
+                                <td><c:out value="${employee.getContractEndDate()}"/></td>
+                                <td><c:out value="${employee.getContractDeposit()}"/></td>
+                                <td><c:out value="${employee.getContractTotalMoney()}"/></td>
+                                <td><c:out value="${employee.getEmployeeName()}"/></td>
+                                <td><c:out value="${employee.getCustomerName()}"/></td>
+                                <td><c:out value="${employee.getServiceName()}"/></td>
                                 <td>
-                                    <a class="btn btn-primary" href="/contract?action=edit&contractId=${customer.getContractId()}" role="button">Edit</a>
-                                    <a onclick="onDelete('${customer.getContractId()}')" class="btn btn-danger"
+                                    <a class="btn btn-primary" href="/contract?action=edit&contractId=${employee.getContractId()}" role="button">Edit</a>
+                                    <a onclick="onDelete('${employee.getContractId()}')" class="btn btn-danger"
                                        role="button" data-toggle="modal" data-target="#modelId">Delete</a>
                                 </td>
                             </tr>

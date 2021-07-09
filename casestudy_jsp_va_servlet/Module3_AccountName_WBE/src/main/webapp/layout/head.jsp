@@ -19,6 +19,9 @@
     </ol>
     <div class="carousel-inner">
     <div class="carousel-item active">
+    <div class="position-absolute mt-4" style="left: 30%">
+    <h1 class="text-center text-danger ml-5">Welcome to Furama Resort!!!</h1>
+    </div>
     <img src="/assert/image/resort1.png" class="d-block w-100" alt="...">
     </div>
     <div class="carousel-item">
